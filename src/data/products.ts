@@ -1,0 +1,236 @@
+export interface Product {
+  id: number;
+  name: string;
+  price: number;
+  originalPrice: number;
+  image: string;
+  category: string;
+  rating: number;
+  reviews: number;
+  description: string;
+  badge?: string;
+  colors?: string[];
+  sizes?: string[];
+  inStock: boolean;
+}
+
+export interface CartItem extends Product {
+  quantity: number;
+  selectedColor?: string;
+  selectedSize?: string;
+}
+
+export const products: Product[] = [
+  {
+    id: 1,
+    name: "Quantum Pro Wireless Headphones",
+    price: 299.99,
+    originalPrice: 449.99,
+    image: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=600&h=600&fit=crop",
+    category: "Electronics",
+    rating: 4.9,
+    reviews: 2847,
+    description: "Experience unparalleled audio quality with our flagship wireless headphones. Featuring adaptive noise cancellation, 40-hour battery life, and premium memory foam cushions for all-day comfort.",
+    badge: "Best Seller",
+    colors: ["#0A0A0F", "#6C5CE7", "#E8E8F0"],
+    inStock: true,
+  },
+  {
+    id: 2,
+    name: "Nebula Smart Watch Ultra",
+    price: 449.99,
+    originalPrice: 599.99,
+    image: "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=600&h=600&fit=crop",
+    category: "Electronics",
+    rating: 4.8,
+    reviews: 1923,
+    description: "The ultimate smartwatch with health monitoring, GPS tracking, and a stunning AMOLED display. Water resistant to 100m with a 7-day battery life.",
+    badge: "New Arrival",
+    colors: ["#0A0A0F", "#C0C0C0", "#FDCB6E"],
+    inStock: true,
+  },
+  {
+    id: 3,
+    name: "Aether Minimalist Backpack",
+    price: 129.99,
+    originalPrice: 179.99,
+    image: "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=600&h=600&fit=crop",
+    category: "Accessories",
+    rating: 4.7,
+    reviews: 1456,
+    description: "Crafted from premium water-resistant materials with a sleek minimalist design. Features dedicated laptop compartment, anti-theft pocket, and ergonomic straps.",
+    colors: ["#0A0A0F", "#2D3436", "#636E72"],
+    inStock: true,
+  },
+  {
+    id: 4,
+    name: "Prism LED Desk Lamp",
+    price: 89.99,
+    originalPrice: 129.99,
+    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&h=600&fit=crop&q=80",
+    category: "Home",
+    rating: 4.6,
+    reviews: 892,
+    description: "Illuminate your workspace with style. Features 5 color modes, 10 brightness levels, wireless charging base, and a sleek architectural design.",
+    badge: "Trending",
+    colors: ["#E8E8F0", "#0A0A0F", "#FDCB6E"],
+    inStock: true,
+  },
+  {
+    id: 5,
+    name: "Titanium Carbon Sunglasses",
+    price: 199.99,
+    originalPrice: 279.99,
+    image: "https://images.unsplash.com/photo-1572635196237-14b3f281503f?w=600&h=600&fit=crop",
+    category: "Accessories",
+    rating: 4.8,
+    reviews: 2103,
+    description: "Ultra-lightweight titanium frame with polarized carbon lenses. UV400 protection with anti-reflective coating. Includes premium leather case.",
+    badge: "Limited Edition",
+    colors: ["#0A0A0F", "#2D3436", "#6C5CE7"],
+    inStock: true,
+  },
+  {
+    id: 6,
+    name: "Aura Wireless Speaker",
+    price: 179.99,
+    originalPrice: 249.99,
+    image: "https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?w=600&h=600&fit=crop",
+    category: "Electronics",
+    rating: 4.7,
+    reviews: 1678,
+    description: "360° immersive sound with deep bass and crystal-clear highs. IPX7 waterproof, 24-hour battery, and multi-room audio support.",
+    colors: ["#0A0A0F", "#E8E8F0", "#6C5CE7"],
+    inStock: true,
+  },
+  {
+    id: 7,
+    name: "Zenith Mechanical Keyboard",
+    price: 219.99,
+    originalPrice: 299.99,
+    image: "https://images.unsplash.com/photo-1587829741301-dc798b83add3?w=600&h=600&fit=crop",
+    category: "Electronics",
+    rating: 4.9,
+    reviews: 3241,
+    description: "Premium mechanical keyboard with hot-swappable switches, per-key RGB lighting, aircraft-grade aluminum frame, and PBT double-shot keycaps.",
+    badge: "Editor's Choice",
+    colors: ["#0A0A0F", "#E8E8F0"],
+    inStock: true,
+  },
+  {
+    id: 8,
+    name: "EcoLux Ceramic Planters Set",
+    price: 69.99,
+    originalPrice: 99.99,
+    image: "https://images.unsplash.com/photo-1485955900006-10f4d324d411?w=600&h=600&fit=crop",
+    category: "Home",
+    rating: 4.5,
+    reviews: 567,
+    description: "Set of 3 handcrafted ceramic planters in varying sizes. Features drainage holes, bamboo saucers, and a modern matte finish.",
+    colors: ["#E8E8F0", "#0A0A0F", "#636E72"],
+    inStock: true,
+  },
+  {
+    id: 9,
+    name: "Velocity Running Shoes",
+    price: 159.99,
+    originalPrice: 219.99,
+    image: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=600&h=600&fit=crop",
+    category: "Fashion",
+    rating: 4.8,
+    reviews: 4521,
+    description: "Engineered for peak performance with responsive cushioning, breathable mesh upper, and carbon fiber plate for energy return.",
+    badge: "Top Rated",
+    sizes: ["7", "8", "9", "10", "11", "12"],
+    colors: ["#E17055", "#0A0A0F", "#E8E8F0"],
+    inStock: true,
+  },
+  {
+    id: 10,
+    name: "Luxe Leather Wallet",
+    price: 79.99,
+    originalPrice: 119.99,
+    image: "https://images.unsplash.com/photo-1627123424574-724758594e93?w=600&h=600&fit=crop",
+    category: "Accessories",
+    rating: 4.6,
+    reviews: 1234,
+    description: "Handcrafted from full-grain Italian leather with RFID blocking technology. Slim profile with 8 card slots and hidden cash pocket.",
+    colors: ["#0A0A0F", "#6C5CE7", "#8B4513"],
+    inStock: true,
+  },
+  {
+    id: 11,
+    name: "Crystal Aromatherapy Diffuser",
+    price: 59.99,
+    originalPrice: 89.99,
+    image: "https://images.unsplash.com/photo-1602928321679-560bb453f190?w=600&h=600&fit=crop",
+    category: "Home",
+    rating: 4.7,
+    reviews: 876,
+    description: "Ultrasonic cool-mist diffuser with ambient LED lighting, whisper-quiet operation, and auto shut-off. Covers up to 500 sq ft.",
+    colors: ["#E8E8F0", "#0A0A0F", "#81ECEC"],
+    inStock: true,
+  },
+  {
+    id: 12,
+    name: "Apex Fitness Tracker Band",
+    price: 99.99,
+    originalPrice: 149.99,
+    image: "https://images.unsplash.com/photo-1575311373937-040b8e1fd5b6?w=600&h=600&fit=crop",
+    category: "Electronics",
+    rating: 4.5,
+    reviews: 2345,
+    description: "Advanced fitness tracking with heart rate, SpO2, sleep analysis, and 14-day battery life. Water resistant with customizable watch faces.",
+    badge: "Value Pick",
+    colors: ["#0A0A0F", "#6C5CE7", "#00CEC9"],
+    inStock: true,
+  },
+];
+
+export const categories = [
+  { id: 1, name: "Electronics", icon: "⚡", count: 156, color: "from-purple-500 to-indigo-600" },
+  { id: 2, name: "Accessories", icon: "💎", count: 89, color: "from-cyan-500 to-teal-600" },
+  { id: 3, name: "Fashion", icon: "👟", count: 234, color: "from-orange-500 to-red-600" },
+  { id: 4, name: "Home", icon: "🏠", count: 178, color: "from-emerald-500 to-green-600" },
+  { id: 5, name: "Sports", icon: "🏆", count: 112, color: "from-pink-500 to-rose-600" },
+  { id: 6, name: "Beauty", icon: "✨", count: 67, color: "from-amber-500 to-yellow-600" },
+];
+
+export const testimonials = [
+  {
+    id: 1,
+    name: "Sarah Mitchell",
+    role: "Verified Buyer",
+    avatar: "SM",
+    rating: 5,
+    text: "Absolutely blown away by the quality! The Quantum Pro headphones are the best I've ever owned. The noise cancellation is incredible and the sound quality is pristine.",
+    product: "Quantum Pro Wireless Headphones",
+  },
+  {
+    id: 2,
+    name: "James Rodriguez",
+    role: "Tech Enthusiast",
+    avatar: "JR",
+    rating: 5,
+    text: "The Nebula Smart Watch has completely changed how I track my fitness. The AMOLED display is gorgeous and the battery life is exactly as advertised. Worth every penny!",
+    product: "Nebula Smart Watch Ultra",
+  },
+  {
+    id: 3,
+    name: "Emily Chen",
+    role: "Interior Designer",
+    avatar: "EC",
+    rating: 5,
+    text: "These ceramic planters are stunning! The matte finish is so elegant and they look perfect in my client's modern living spaces. Already ordered two more sets.",
+    product: "EcoLux Ceramic Planters Set",
+  },
+  {
+    id: 4,
+    name: "Marcus Thompson",
+    role: "Professional Gamer",
+    avatar: "MT",
+    rating: 5,
+    text: "The Zenith keyboard is a game-changer. Hot-swappable switches mean I can customize my typing experience. The build quality is absolutely premium.",
+    product: "Zenith Mechanical Keyboard",
+  },
+];
