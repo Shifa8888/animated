@@ -1,12 +1,14 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Search, ShoppingCart, Menu, X, User, Heart } from 'lucide-react';
+import { Search, ShoppingCart, Menu, X, User, Heart, Sun, Moon } from 'lucide-react';
 import { useCart } from '../context/CartContext';
+import { useTheme } from '../context/ThemeContext';
 
 const navLinks = ['Home', 'Shop', 'Categories', 'Deals', 'About'];
 
 export default function Navbar() {
   const { totalItems, setIsCartOpen } = useCart();
+  const { theme, toggleTheme } = useTheme();
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
@@ -124,6 +126,26 @@ export default function Navbar() {
                 className="hidden sm:flex p-2 md:p-2.5 rounded-xl hover:bg-white/5 text-light-text/70 hover:text-white transition-all"
               >
                 <User className="w-4 h-4 md:w-5 md:h-5" />
+              </motion.button>
+
+              {/* Theme Toggle */}
+              <motion.button
+                whileTap={{ scale: 0.9 }}
+                onClick={toggleTheme}
+                title={theme === 'dark' ? 'Maximize Theme' : 'Dark Theme'}
+                className="p-2 md:p-2.5 rounded-xl hover:bg-white/5 text-light-text/70 hover:text-white transition-all"
+              >
+                <AnimatePresence mode="wait">
+                  {theme === 'dark' ? (
+                    <motion.div key="sun" initial={{ rotate: -90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: 90, opacity: 0 }} transition={{ duration: 0.2 }}>
+                      <Sun className="w-4 h-4 md:w-5 md:h-5" />
+                    </motion.div>
+                  ) : (
+                    <motion.div key="moon" initial={{ rotate: 90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: -90, opacity: 0 }} transition={{ duration: 0.2 }}>
+                      <Moon className="w-4 h-4 md:w-5 md:h-5" />
+                    </motion.div>
+                  )}
+                </AnimatePresence>
               </motion.button>
 
               {/* Cart */}

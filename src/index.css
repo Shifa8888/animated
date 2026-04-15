@@ -354,3 +354,75 @@ img {
 @media (min-width: 1441px) {
   html { font-size: 17px; }
 }
+
+/* ===== MAXIMIZE THEME ===== */
+[data-theme="maximize"] {
+  --color-primary: #7C3AED;
+  --color-primary-light: #C4B5FD;
+  --color-accent: #F59E0B;
+  --color-accent-light: #FDE68A;
+  --color-dark: #FFFFFF;
+  --color-dark-card: #F3F4F6;
+  --color-dark-surface: #E5E7EB;
+  --color-dark-border: #D1D5DB;
+  --color-light-text: #111827;
+  --color-muted-text: #6B7280;
+}
+
+[data-theme="maximize"] body {
+  background-color: #FFFFFF;
+  color: #111827;
+}
+
+[data-theme="maximize"] .glass {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+[data-theme="maximize"] .glass-strong {
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(30px);
+  -webkit-backdrop-filter: blur(30px);
+  border: 1px solid rgba(124, 58, 237, 0.15);
+}
+
+[data-theme="maximize"] .noise-overlay {
+  opacity: 0.015;
+}
+
+[data-theme="maximize"] ::-webkit-scrollbar-track {
+  background: #F3F4F6;
+}
+
+[data-theme="maximize"] ::-webkit-scrollbar-thumb {
+  background: #7C3AED;
+}
+
+[data-theme="maximize"] .skeleton {
+  background: linear-gradient(90deg, #E5E7EB 25%, #D1D5DB 50%, #E5E7EB 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+[data-theme="maximize"] .hover-card:hover {
+  box-shadow: 0 20px 60px rgba(124, 58, 237, 0.15);
+}
+
+[data-theme="maximize"] .text-gradient {
+  background: linear-gradient(135deg, #7C3AED, #C4B5FD, #F59E0B);
+  background-size: 300% 300%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: text-gradient 4s ease infinite;
+}
+
+[data-theme="maximize"] .text-gradient-gold {
+  background: linear-gradient(135deg, #F59E0B, #EF4444, #F59E0B);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
