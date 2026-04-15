@@ -1,9 +1,12 @@
+import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, Plus, Minus, Trash2, ShoppingBag, ArrowRight } from 'lucide-react';
 import { useCart } from '../context/CartContext';
+import CheckoutModal from './CheckoutModal';
 
 export default function CartSidebar() {
   const { items, isCartOpen, setIsCartOpen, removeFromCart, updateQuantity, totalPrice, clearCart } = useCart();
+  const [isCheckoutOpen, setIsCheckoutOpen] = useState(false);
 
   return (
     <AnimatePresence>
@@ -139,6 +142,7 @@ export default function CartSidebar() {
                 <motion.button
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
+                  onClick={() => setIsCheckoutOpen(true)}
                   className="w-full py-4 bg-gradient-to-r from-primary to-accent rounded-2xl text-white font-bold text-base flex items-center justify-center gap-2 shadow-lg shadow-primary/25"
                 >
                   Checkout
@@ -157,5 +161,9 @@ export default function CartSidebar() {
         </motion.div>
       )}
     </AnimatePresence>
+
+      {isCheckoutOpen && (
+        <CheckoutModal onClose={() => setIsCheckoutOpen(false)} />
+      )}
   );
 }
