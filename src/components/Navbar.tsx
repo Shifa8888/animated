@@ -1,14 +1,18 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Search, ShoppingCart, Menu, X, User, Heart, Sun, Moon } from 'lucide-react';
+import { Search, ShoppingCart, Menu, X, User, Heart, Sun, Moon, LogOut } from 'lucide-react';
 import { useCart } from '../context/CartContext';
 import { useTheme } from '../context/ThemeContext';
+import { useAuth } from '../context/AuthContext';
+import AccountModal from './AccountModal';
 
 const navLinks = ['Home', 'Shop', 'Categories', 'Deals', 'About'];
 
 export default function Navbar() {
   const { totalItems, setIsCartOpen } = useCart();
   const { theme, toggleTheme } = useTheme();
+  const { user, logout } = useAuth();
+  const [accountOpen, setAccountOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
@@ -120,13 +124,39 @@ export default function Navbar() {
                 <Heart className="w-4 h-4 md:w-5 md:h-5" />
               </motion.button>
 
-              {/* User */}
-              <motion.button
-                whileTap={{ scale: 0.9 }}
-                className="hidden sm:flex p-2 md:p-2.5 rounded-xl hover:bg-white/5 text-light-text/70 hover:text-white transition-all"
-              >
-                <User className="w-4 h-4 md:w-5 md:h-5" />
-              </motion.button>
+              {/* User / Avatar */}
+              {user ? (
+                <div className="hidden sm:flex items-center gap-1">
+                  <motion.button
+                    whileTap={{ scale: 0.9 }}
+                    onClick={() => setAccountOpen(true)}
+                    className="flex items-center gap-2 px-2 py-1.5 rounded-xl hover:bg-white/5 transition-all"
+                  >
+                    <div className="w-7 h-7 md:w-8 md:h-8 rounded-xl bg-gradient-to-br from-primary to-accent flex items-center justify-center text-white text-xs font-bold shadow-md shadow-primary/30">
+                      {user.name[0].toUpperCase()}
+                    </div>
+                    <span className="hidden md:block text-sm font-medium text-light-text/80 max-w-[80px] truncate">
+                      {user.name}
+                    </span>
+                  </motion.button>
+                  <motion.button
+                    whileTap={{ scale: 0.9 }}
+                    onClick={logout}
+                    title="Logout"
+                    className="p-2 rounded-xl hover:bg-red-500/10 text-muted-text hover:text-red-400 transition-all"
+                  >
+                    <LogOut className="w-4 h-4 md:w-5 md:h-5" />
+                  </motion.button>
+                </div>
+              ) : (
+                <motion.button
+                  whileTap={{ scale: 0.9 }}
+                  onClick={() => setAccountOpen(true)}
+                  className="hidden sm:flex p-2 md:p-2.5 rounded-xl hover:bg-white/5 text-light-text/70 hover:text-white transition-all"
+                >
+                  <User className="w-4 h-4 md:w-5 md:h-5" />
+                </motion.button>
+              )}
 
               {/* Theme Toggle */}
               <motion.button
@@ -214,10 +244,16 @@ export default function Navbar() {
                   </motion.a>
                 ))}
                 <div className="mt-6 flex flex-col gap-3">
-                  <button className="w-full py-3 rounded-xl bg-gradient-to-r from-primary to-accent text-white font-semibold text-sm">
+                  <button
+                    onClick={() => { setMobileOpen(false); setAccountOpen(true); }}
+                    className="w-full py-3 rounded-xl bg-gradient-to-r from-primary to-accent text-white font-semibold text-sm"
+                  >
                     Sign In
                   </button>
-                  <button className="w-full py-3 rounded-xl border border-white/10 text-light-text font-semibold text-sm hover:bg-white/5">
+                  <button
+                    onClick={() => { setMobileOpen(false); setAccountOpen(true); }}
+                    className="w-full py-3 rounded-xl border border-white/10 text-light-text font-semibold text-sm hover:bg-white/5"
+                  >
                     Create Account
                   </button>
                 </div>
@@ -226,6 +262,7 @@ export default function Navbar() {
           </motion.div>
         )}
       </AnimatePresence>
+      {accountOpen && <AccountModal onClose={() => setAccountOpen(false)} />}
     </>
   );
 }
