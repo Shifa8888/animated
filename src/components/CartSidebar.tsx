@@ -9,6 +9,7 @@ export default function CartSidebar() {
   const [isCheckoutOpen, setIsCheckoutOpen] = useState(false);
 
   return (
+    <>
     <AnimatePresence>
       {isCartOpen && (
         <motion.div
@@ -165,5 +166,6 @@ export default function CartSidebar() {
       {isCheckoutOpen && (
         <CheckoutModal onClose={() => setIsCheckoutOpen(false)} />
       )}
+    </>
   );
 }
